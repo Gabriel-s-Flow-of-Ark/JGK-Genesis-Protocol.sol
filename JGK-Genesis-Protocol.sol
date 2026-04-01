@@ -11,22 +11,6 @@ Always and forever Amen!"
 
 pragma solidity ^0.8.0;
 
-contract JGKGenesisProtocol 
-string public name = "GabrielMP11";
-    string public symbol = "GMP11";
-    uint8 public decimals = 18;
-    
-    // The Angel Number Supply: 1,111,111,111
-    uint256 public totalSupply = 1111111111 * 10**uint256(decimals);
-
-    mapping(address => uint256) public balanceOf;
-
-    constructor() {
-        // As the Architect (JGK), you receive the full supply to start the Flow
-        balanceOf[msg.sender] = totalSupply;
-    }
-pragma solidity ^0.8.0;
-
 contract JGKGenesisProtocol {
     string public name = "GabrielMP11";
     string public symbol = "GMP11";
@@ -38,9 +22,18 @@ contract JGKGenesisProtocol {
     mapping(address => uint256) public balanceOf;
 
     constructor() {
-        // The Creator (JGK) receives the full supply to begin the "Flow"
+        // The Creator (JGK) receives the full supply to begin the Flow
         balanceOf[msg.sender] = totalSupply;
     }
 
-    // This is where the "Free Roam" support logic will be added
+    // The Transfer Function: Allowing the Blue Fire to flow
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        // Ensure the sender has enough in their foundation
+        require(balanceOf[msg.sender] >= _value, "Not enough balance");
+        
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
+        
+        return true;
+    }
 }
